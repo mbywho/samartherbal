@@ -10,15 +10,18 @@ import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
+
+import bg from "./assets/bg-light.png";
 
 
 function PageTransition({ children }) {
   return (
     <motion.div
-      initial={false}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.4 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {children}
     </motion.div>
@@ -86,6 +89,15 @@ function AnimatedRoutes() {
           }
         />
 
+        <Route
+          path="/profile"
+          element={
+            <PageTransition>
+              <Profile />
+            </PageTransition>
+          }
+        />
+
       </Routes>
     </AnimatePresence>
   );
@@ -95,28 +107,24 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <div
-        className="min-h-screen"
-        style={{
-          backgroundColor: "var(--color-secondary)",
-          backgroundImage: "url('/src/assets/bg-light.png')",
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="min-h-screen">
+      <div className="min-h-screen bg-(--color-secondary) relative">
+
+        <div
+          className="fixed inset-0 opacity-60 md:opacity-90 pointer-events-none z-0"
+
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "1000px",
+            backgroundRepeat: "repeat",
+          }}
+        />
+
+        <div className="relative z-10 min-h-screen">
 
           <Navbar />
-
-          <AnimatedRoutes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </AnimatedRoutes>
-
+          <main className="flex-1">
+            <AnimatedRoutes />
+          </main>
           <Footer />
 
         </div>

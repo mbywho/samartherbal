@@ -12,11 +12,11 @@ function ProductDetail() {
 
   return (
     <div className="px-10 py-20 flex flex-col md:flex-row gap-10 items-center">
-      
+
       <img
         src={product.image}
         alt={product.name}
-        className="w-100 h-75 object-cover rounded-xl shadow-md"
+        className="w-100 h-full object-cover rounded-xl shadow-md"
       />
 
       <div>

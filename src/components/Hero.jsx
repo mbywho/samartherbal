@@ -1,56 +1,60 @@
 import { Link } from "react-router-dom";
-import useFadeIn from "../hooks/useFadeIn";
-// import sh_hero from "../assets/hero.svg";
+import { motion } from "framer-motion";
 
 function Hero() {
-  const { ref, visible } = useFadeIn();
-
   return (
-    <section
-      ref={ref}
-      className={`px-6 md:px-16 py-28 flex flex-col items-center text-center hero-in ${visible ? " show" : ""}`}
-    // style={{
-    //   backgroundImage: "url('/src/assets/bg-light.png')",
-    //   backgroundSize: "cover",
-    //   backgroundPosition: "center",
-    // }}
+    <motion.section
+      className="px-4 sm:px-6 md:px-16 min-h-[50vh] py-20 flex flex-col items-center justify-center text-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
+      <div className="w-full max-w-6xl bg-white/20 border border-white/20 backdrop-blur-md flex flex-col items-center rounded-[3rem] px-6 sm:px-10 md:px-20 py-20 md:py-28 shadow-xl">
 
-      {/* Brand Name */}
-      <h1
-        className="text-5xl md:text-9xl font-medium mb-6"
-        style={{
-          color: "var(--color-primary)",
-          fontFamily: "Bonheur Royale, cursive"
-        }
-        }
-      >
-        Samarth Herbal
-      </h1>
+        {/* Brand Name */}
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] leading-none font-medium mb-6"
+          style={{
+            color: "var(--color-primary)",
+            fontFamily: "Bonheur Royale, cursive",
+            textShadow: "0 4px 20px rgba(0,0,0,0.1)",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Samarth Herbal
+        </motion.h1>
 
-      {/* Tagline */}
-      < p className="text-gray-600 text-lg max-w-2xl mb-8" >
-        Handcrafted herbal care rooted in tradition and designed for modern wellness.
-      </p >
+        {/* Tagline */}
+        <motion.p
+          // className="text-sm sm:text-base md:text-lg text-gray-700 max-w-xs sm:max-w-xl md:max-w-2xl mx-auto mb-8 leading-relaxed px-2 wrap-break-word"
+          className="text-sm sm:text-base md:text-lg text-gray-700 max-w-[18rem] sm:max-w-md md:max-w-2xl mx-auto mb-8 leading-relaxed px-2 wrap-break-word"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          Pure herbal care for everyday wellness.
+        </motion.p>
 
-      {/* CTA Buttons */}
-      < div className="flex gap-4" >
-        <Link to={'/products'}>
-          <button
-            className="px-8 py-3 rounded-full bg-(--color-primary) text-white font-semibold hover:scale-105 hover:shadow- hover:bg-(--color-accent)/50 hover:text-(--color-primary) transition duration-300"
-          >
+        {/* CTA Button */}
+        <motion.div
+          className="flex gap-4 pt-3 md:pt-7"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Link to="/products">
+            <button
+              className="px-7 py-3 md:px-8 rounded-full bg-(--color-primary) text-white font-semibold hover:bg-(--color-accent)/50 backdrop-blur-sm hover:text-(--color-primary) hover:scale-105 transition duration-200"
+            >
 
-            Shop Now
-
-          </button>
-        </Link>
-
-        {/* <button className="px-8 py-3 rounded-full border border-gray-300 hover:bg-gray-100 transition">
-          Learn More
-        </button> */}
-      </div >
-
-    </section >
+              Shop Now
+            </button>
+          </Link>
+        </motion.div>
+      </div>
+    </motion.section>
   );
 }
 
